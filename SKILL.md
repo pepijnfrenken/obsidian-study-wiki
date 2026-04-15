@@ -66,7 +66,7 @@ wiki/
 5. Write `AGENTS.md` in the project root with the study/teaching intent (see AGENTS.md template)
 6. Ask user for course name(s) and any course outline/syllabus to seed the structure
 7. If a syllabus is provided, pre-populate `mastery.md` with all topics at level 0 (uncovered)
-8. If `raw/` already has files, immediately run INGEST on all of them
+8. If `raw/` already has files, offer to run the normal interactive INGEST flow on them immediately
 
 ### INGEST
 1. Read the new source in `raw/`
@@ -79,8 +79,9 @@ wiki/
 8. Cross-reference related pages across the wiki — update wikilinks
 9. If a later lecture redefines or generalizes an earlier concept, update the earlier page
 10. Update `index.md` with new/changed pages
-11. Append to `log.md`: `## [YYYY-MM-DD] ingest | Source Title`
-12. A single lecture should typically touch 5-10 wiki pages
+11. Append to `log.md`: `## [YYYY-MM-DD] ingest | Source Title`, followed by `- Source: raw/...`, course, and pages created/updated
+12. Update `mastery.md` for newly introduced or discussed topics, using each topic's `last assessed: YYYY-MM-DD` date to track freshness
+13. A single lecture should typically touch 5-10 wiki pages
 
 ### QUERY
 1. Read `index.md` to find relevant pages
@@ -157,11 +158,13 @@ Every topic tracked in `mastery.md` has a grasp level:
 - **During MASTERY-CHECK**: Explicit self-assessment or quiz-based evaluation.
 - **User can edit directly**: The user can open `mastery.md` and adjust levels at any time. The LLM respects manual overrides.
 
+Freshness should be inferred from each topic's `last assessed: YYYY-MM-DD` date. A topic is stale once it has gone more than two weeks without reassessment.
+
 ### What mastery.md tracks
 
 For each topic:
 - Grasp level (0-5)
-- Date of last assessment
+- `last assessed: YYYY-MM-DD`
 - Evidence: what interactions informed the rating (queries answered, exercises solved, questions asked)
 - Weak areas: specific subtopics or skills that need work
 - Review history: how the level has changed over time (so the user can see progress)

@@ -5,7 +5,7 @@
       "hooks": [
         {
           "type": "prompt",
-          "prompt": "If a wiki/ directory exists in the current project and any files in raw/ were added or modified during this task, silently update the wiki: process new sources into wiki pages, update relevant concept/formula/proof pages, update mastery.md with new topic exposures or level changes, update index.md, and append to log.md. If no raw/ changes or no wiki/ exists, do nothing."
+          "prompt": "If a wiki/ directory exists in the current project and any files in raw/ were added or modified during this task, do not silently rewrite the wiki. Instead, note that new sources are waiting in raw/ and offer the normal interactive INGEST workflow: discuss key takeaways with the user, ask what to emphasize, then update the wiki only if they want to proceed. If no raw/ changes or no wiki/ exists, do nothing."
         }
       ]
     }

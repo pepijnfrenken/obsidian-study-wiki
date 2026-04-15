@@ -237,7 +237,7 @@ concepts: [maximum-likelihood-estimation, fisher-information]
 formulas: [mle-normal-distribution, cramers-inequality]
 created: 2026-04-14
 updated: 2026-04-14
-source: raw/problem-set-3.pdf
+sources: [raw/problem-set-3.pdf]
 ---
 
 # Problem Set 3, Question 5 — MLE for Normal Distribution
@@ -289,7 +289,7 @@ lecture: "Lecture 7"
 tags: [hypothesis-testing, p-values, significance, type-i-error]
 created: 2026-04-14
 updated: 2026-04-14
-original: raw/lecture-07-hypothesis-testing.pdf
+sources: [raw/lecture-07-hypothesis-testing.pdf]
 ---
 
 # Lecture 7 — Hypothesis Testing

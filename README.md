@@ -38,16 +38,18 @@ The skill activates when you:
 1. Install the skill in your Factory project
 2. Say "init wiki" to create the directory structure
 3. Drop course materials into `raw/`
-4. The wiki will ingest them automatically and start building pages
+4. Say "ingest this" (or ask the wiki to process the new sources) to run the interactive ingest flow
 
 ## Mastery Tracking
 
-Every topic gets a grasp level from 0 (uncovered) to 5 (mastered). The system updates levels based on your interactions — questions you ask, exercises you solve, concepts you struggle with. You can also edit `wiki/mastery.md` directly at any time.
+Every topic gets a grasp level from 0 (uncovered) to 5 (mastered). The system updates levels based on your interactions — questions you ask, exercises you solve, concepts you struggle with. You can also edit `wiki/mastery.md` directly at any time. Staleness should be inferred from each topic's `last assessed: YYYY-MM-DD` date rather than from manual marker tags.
 
 ## Hooks
 
-- **SessionStart**: Runs `scripts/check-wiki-drift.sh` to detect unprocessed sources in `raw/` and stale mastery assessments
-- **Stop**: Automatically processes any new/modified files in `raw/` into wiki pages before the session ends
+- **SessionStart**: Runs `scripts/check-wiki-drift.sh` to detect unprocessed sources in `raw/` and topics whose `last assessed` dates have gone stale
+- **Stop**: If `raw/` changed during the task, nudges the agent to offer the normal interactive INGEST workflow instead of silently rewriting the wiki
+
+The SessionStart command uses the host-provided `${CLAUDE_PLUGIN_ROOT}` path to locate the bundled script.
 
 ## File Overview
 
@@ -55,8 +57,8 @@ Every topic gets a grasp level from 0 (uncovered) to 5 (mastered). The system up
 |------|---------|
 | `SKILL.md` | Skill definition, decision tree, and full operation specs |
 | `AGENTS.md` | Teaching intent and interaction style guidelines |
-| `hooks.json` | SessionStart and Stop hooks for auto-processing |
-| `scripts/check-wiki-drift.sh` | Detects unprocessed sources and stale mastery entries |
+| `hooks.json` | SessionStart drift detection and Stop-time ingest nudges |
+| `scripts/check-wiki-drift.sh` | Detects unprocessed sources and date-based mastery drift |
 | `references/operations.md` | Detailed workflow descriptions for each operation |
 | `references/page-templates.md` | Page format examples and frontmatter conventions |
 

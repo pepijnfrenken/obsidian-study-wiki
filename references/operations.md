@@ -114,7 +114,7 @@ When setting up a new wiki:
 
 8. **If a syllabus was provided**, pre-populate `mastery.md` with all topics from the syllabus at level 0 (uncovered). Group by course if multi-course.
 
-9. **If `raw/` already has files**, immediately run INGEST on all of them.
+9. **If `raw/` already has files**, offer to run the normal interactive INGEST flow on them immediately.
 
 ---
 
@@ -149,7 +149,7 @@ When a new source is added to `raw/`:
    tags: [hypothesis-testing, p-values, significance]
    created: 2026-04-14
    updated: 2026-04-14
-   original: raw/lecture-07-hypothesis-testing.pdf
+   sources: [raw/lecture-07-hypothesis-testing.pdf]
    ---
    ```
    Body: structured summary (not a copy), key formulas, main arguments, connections to previous lectures.
@@ -301,7 +301,7 @@ Periodic health check of the wiki:
    - Append mastery-specific findings to the drill log entry
 
 7. **Update `mastery.md`:**
-   - Mark any stale assessments (not updated in >2 weeks) with a `[stale]` flag
+   - Treat any topic whose `last assessed` date is more than 2 weeks old as stale during the drill
    - If you created new stub pages during the drill, add those topics to mastery.md at level 0-1 if not already tracked
    - Append to `Session Notes`:
      ```markdown
@@ -389,7 +389,7 @@ When working through problem sets or exercises:
    formulas: [mle-normal-distribution, cramers-inequality]
    created: 2026-04-14
    updated: 2026-04-14
-   source: raw/problem-set-3.pdf
+   sources: [raw/problem-set-3.pdf]
    ---
    ```
 
@@ -459,6 +459,13 @@ When working through problem sets or exercises:
 - Pages consulted: concepts/central-limit-theorem.md, concepts/hypothesis-testing.md
 - Answer filed: queries/clt-and-hypothesis-testing.md
 
+## [2026-04-14] ingest | Lecture 8 — Maximum Likelihood Estimation
+- Source: raw/lecture-08-maximum-likelihood-estimation.pdf
+- Course: Statistics 201
+- Pages created: concepts/maximum-likelihood-estimation.md, formulas/mle-normal-distribution.md
+- Pages updated: overview.md, mastery.md
+- Total pages touched: 6
+
 ## [2026-04-14] drill | Weekly health check
 - Issues found: 2 missing concepts, 1 orphan page
 - Fixed: created concept stubs, added cross-references
@@ -488,7 +495,7 @@ Explicit assessment of the user's understanding across topics:
 
 4. **Update `mastery.md`:**
    - Update the grasp level for each assessed topic
-   - Update the `last-assessed` date
+   - Update the `last assessed` date in `YYYY-MM-DD` form
    - Update the `evidence` field with what informed the rating
    - If the level changed, add an entry to the topic's history
 
@@ -513,7 +520,7 @@ Explicit assessment of the user's understanding across topics:
    ### 2026-04-14 — mastery-check: Weekly assessment
    - bayes-theorem: 2 → 4 (solved 3 practice problems without help)
    - central-limit-theorem: 3 → 4 (explained the proof intuitively)
-   - probability-axioms: 4 → 3 [stale — last really used 2026-03-28] (forgot the third axiom)
+   - probability-axioms: 4 → 3 (last assessed 2026-03-28; forgot the third axiom)
    - hypothesis-testing: 2 → 2 (still mixing up type I/II errors)
    ```
 
@@ -528,17 +535,14 @@ The mastery file has three sections:
 Each topic entry tracks:
 
 ```markdown
-### Topic: central-limit-theorem
-- Level: 4 (Strong)
-- Course: Statistics 201
-- Last assessed: 2026-04-14
-- Evidence: quiz-based (explained proof intuitively, connected to hypothesis testing)
-- Weak areas: (none identified)
-- History:
-  - 2026-04-14: 3 → 4 (quiz — explained proof intuitively)
-  - 2026-04-10: 2 → 3 (query — answered CLT question with follow-up)
-  - 2026-04-08: 1 → 2 (ingest — discussed lecture 6, seemed comfortable)
-  - 2026-04-08: 0 → 1 (ingest — first exposure in lecture 6)
+- **central-limit-theorem** — last assessed: 2026-04-14 — evidence: quiz-based (explained proof intuitively, connected to hypothesis testing) — weak areas: (none identified)
+  - level: 4 (Strong)
+  - course: Statistics 201
+  - history:
+    - 2026-04-14: 3 → 4 (quiz — explained proof intuitively)
+    - 2026-04-10: 2 → 3 (query — answered CLT question with follow-up)
+    - 2026-04-08: 1 → 2 (ingest — discussed lecture 6, seemed comfortable)
+    - 2026-04-08: 0 → 1 (ingest — first exposure in lecture 6)
 ```
 
 Topics are grouped by course. Within a course, sorted by level (weakest first) so the user sees gaps immediately.
